@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/medi-ai-frontend/static/css/main.f855e6bc.css",
+    "main.js": "/medi-ai-frontend/static/js/main.9e89da8b.js",
+    "static/js/453.b122a024.chunk.js": "/medi-ai-frontend/static/js/453.b122a024.chunk.js",
+    "static/media/logo.svg": "/medi-ai-frontend/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/medi-ai-frontend/index.html",
+    "main.f855e6bc.css.map": "/medi-ai-frontend/static/css/main.f855e6bc.css.map",
+    "main.9e89da8b.js.map": "/medi-ai-frontend/static/js/main.9e89da8b.js.map",
+    "453.b122a024.chunk.js.map": "/medi-ai-frontend/static/js/453.b122a024.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.9e89da8b.js"
+  ]
+}
