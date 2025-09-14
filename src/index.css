@@ -167,25 +167,35 @@ body,
   text-align: center;
 }
 
-.features-grid {
+/* .features-grid {
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+} */
 
-.feature-card {
+/* .feature-card {
   background: #e0e7ff;
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
   transition: transform 0.2s ease;
   cursor: default;
+} */
+
+.features-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
-.feature-card:hover {
-  transform: translateY(-4px);
+.feature-card {
+  background: #e0e7ff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
 }
-
 .feature-card h3 {
   margin-top: 0;
   margin-bottom: 12px;
@@ -196,4 +206,28 @@ body,
 .feature-card p {
   font-size: clamp(1rem, 1.5vw, 1.125rem);
   color: #334155;
+}
+.feature-card:hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+  transform: translateY(5px) scale(1.02);
+}
+
+/* Keyframes for fade-in and slide-up */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation class applied to each card */
+.fade-slide-in {
+  animation-name: fadeSlideIn;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards; /* keep final state */
+  animation-timing-function: ease-out;
 }

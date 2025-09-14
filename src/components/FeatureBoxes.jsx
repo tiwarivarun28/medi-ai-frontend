@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function FeatureBoxes() {
   const features = [
     {
@@ -34,8 +36,12 @@ export default function FeatureBoxes() {
     <section className="features-section">
       <h2>What MediAssist Offers</h2>
       <div className="features-grid">
-        {features.map(({ title, description }) => (
-          <div key={title} className="feature-card">
+        {features.map(({ title, description }, index) => (
+          <div
+            key={title}
+            className="feature-card fade-slide-in"
+            style={{ animationDelay: `${index * 0.2}s` }}
+          >
             <h3>{title}</h3>
             <p>{description}</p>
           </div>
