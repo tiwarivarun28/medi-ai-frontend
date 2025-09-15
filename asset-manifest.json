@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/medi-ai-frontend/static/css/main.5de4c68b.css",
-    "main.js": "/medi-ai-frontend/static/js/main.50058d31.js",
+    "main.css": "/medi-ai-frontend/static/css/main.3aa00f28.css",
+    "main.js": "/medi-ai-frontend/static/js/main.60a5be7e.js",
     "static/js/453.b122a024.chunk.js": "/medi-ai-frontend/static/js/453.b122a024.chunk.js",
+    "static/media/impactedorgans.png": "/medi-ai-frontend/static/media/impactedorgans.f8403c9cd058a95b32c3.png",
+    "static/media/understandcauses.png": "/medi-ai-frontend/static/media/understandcauses.74a0a61a479ce97eaf14.png",
+    "static/media/simplifiedReport.png": "/medi-ai-frontend/static/media/simplifiedReport.8afd4d5f5d8a3227ed4b.png",
+    "static/media/homeremedies.png": "/medi-ai-frontend/static/media/homeremedies.fb5005d718606e6896fc.png",
+    "static/media/consult.png": "/medi-ai-frontend/static/media/consult.88d082d851267e756a30.png",
+    "static/media/privacy.png": "/medi-ai-frontend/static/media/privacy.e548e02976a97131066d.png",
     "index.html": "/medi-ai-frontend/index.html",
-    "main.5de4c68b.css.map": "/medi-ai-frontend/static/css/main.5de4c68b.css.map",
-    "main.50058d31.js.map": "/medi-ai-frontend/static/js/main.50058d31.js.map",
+    "main.3aa00f28.css.map": "/medi-ai-frontend/static/css/main.3aa00f28.css.map",
+    "main.60a5be7e.js.map": "/medi-ai-frontend/static/js/main.60a5be7e.js.map",
     "453.b122a024.chunk.js.map": "/medi-ai-frontend/static/js/453.b122a024.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5de4c68b.css",
-    "static/js/main.50058d31.js"
+    "static/css/main.3aa00f28.css",
+    "static/js/main.60a5be7e.js"
   ]
 }
