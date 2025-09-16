@@ -1,5 +1,5 @@
 import { BrowserRouter } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 // import Header from "./components/layout/Header";
 import Main from "./components/layout/Main";
 // import Footer from "./components/layout/Footer";
