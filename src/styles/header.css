@@ -1,10 +1,31 @@
 .site-header {
-  background-color: var(--color-header-bg);
-  padding: var(--space-md) var(--space-lg);
-  position: sticky;
+  background: linear-gradient(to right, #e8f6ff, #637bd3);
+  padding: 20px 32px;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 10;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  transition: top 0.4s ease; /* smooth slide */
+}
+.site-header.hidden {
+  top: -80px;
+}
+
+.brand-logo {
+  width: 35px;
+  height: 35px;
+}
+.mobile-view .header-inner {
+  align-items: center;
+  display: flex;
+}
+.brand-logo-name {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  gap: 10px; /* space between logo and name */
 }
 
 .header-inner {
@@ -22,7 +43,24 @@
   color: var(--color-text-dark);
   text-decoration: none;
 }
+/* Drawer wrapper */
+.custom-drawer-home-page {
+  /* affects the root container */
+  opacity: 1;
+}
 
+/* The inner Paper element */
+.custom-drawer-home-page .MuiDrawer-paper {
+  background: #05142b;
+  color: #ffffff;
+  width: 200px;
+  padding: 10px;
+}
+.custom-drawer-home-page .MuiDrawer-paper .MuiListItemText-primary {
+  font-size: 18px; /* bigger menu text */
+  font-weight: 400; /* optional: bold */
+}
+/* //=====================------------------------------------------- */
 .nav a {
   margin-left: var(--space-lg);
   text-decoration: none;
@@ -37,26 +75,4 @@
 .nav a.active {
   background-color: var(--color-text-dark);
   color: var(--color-text-light);
-}
-
-@media (max-width: 768px) {
-  .header-inner {
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-sm);
-  }
-  .nav a {
-    margin-left: var(--space-md);
-    font-size: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  .brand {
-    font-size: 1.25rem;
-  }
-  .nav a {
-    margin-left: var(--space-sm);
-    font-size: 0.9rem;
-    padding: 2px 6px;
-  }
 }
