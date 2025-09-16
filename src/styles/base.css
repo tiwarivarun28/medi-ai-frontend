@@ -20,11 +20,10 @@ body,
   --space-lg: 32px;
   --space-xl: 48px;
 
-  --color-header-bg: #a7f3d0;
-  --color-main-bg: #c4b5fd;
+  --color-main-bg: #ffffff;
   --color-footer-bg: #fbcfe8;
-  --color-text-dark: #1e293b;
-  --color-text-light: #f9fafb;
+  --color-text-dark: #103674;
+  --color-text-light: #ffffff;
 
   --fs-base: clamp(1rem, 1.25vw, 1.125rem);
   --fs-lg: clamp(1.5rem, 2vw, 2.25rem);

@@ -4,10 +4,14 @@ import ReactDOM from "react-dom/client";
 import "./styles/base.css";
 import "./styles/layout.css";
 import "./styles/header.css";
+import "./styles/home.css";
 import "./styles/main.css";
 import "./styles/footer.css";
 import "./styles/features.css";
 import "./styles/animations.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
