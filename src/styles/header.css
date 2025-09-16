@@ -1,5 +1,5 @@
 .site-header {
-  background: linear-gradient(to right, #e8f6ff, #637bd3);
+  background: linear-gradient(205deg, #103674, #9a4eff);
   padding: 20px 32px;
   position: fixed;
   top: 0;
@@ -20,6 +20,7 @@
 .mobile-view .header-inner {
   align-items: center;
   display: flex;
+  color: white;
 }
 .brand-logo-name {
   display: flex;
@@ -40,7 +41,7 @@
 .brand {
   font-weight: 700;
   font-size: var(--fs-lg);
-  color: var(--color-text-dark);
+  color: white;
   text-decoration: none;
 }
 /* Drawer wrapper */

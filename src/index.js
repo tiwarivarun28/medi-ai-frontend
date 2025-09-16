@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 // import './index.css';
 import "./styles/base.css";
+import "./styles/chatbot.css";
 import "./styles/layout.css";
 import "./styles/header.css";
 import "./styles/home.css";
