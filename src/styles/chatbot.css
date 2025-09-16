@@ -58,7 +58,7 @@
 
 /* User (right side) */
 .chat-message.user {
-  background: #103674;
+  background: linear-gradient(135deg, #103674, #9a4eff);
   color: white;
   align-self: flex-end;
   border-top-right-radius: 4px;
