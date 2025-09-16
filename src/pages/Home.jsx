@@ -10,8 +10,10 @@ import stressScore from "../assets/features/stressScore.png";
 import calander from "../assets/features/calander.png";
 import progress from "../assets/features/progress.png";
 import Slider from "react-slick";
+import Chatbot from "./ChatBot";
 export default function Home() {
   const [showIcon, setShowIcon] = useState(false);
+  const [openChatBot, setOpenChatBot] = useState(false);
   const [hideTxt, setHideTxt] = useState(false);
   const stepsImg = [
     aireport,
@@ -47,6 +49,9 @@ export default function Home() {
   };
   const homeBanner = localization.homeBanner;
   const slides = localization.bannerSlide;
+  const toggleChatBot = () => {
+    setOpenChatBot(!openChatBot);
+  };
   return (
     <div className="home-page-parent">
       <Header />
@@ -86,7 +91,12 @@ export default function Home() {
             {showIcon && (
               <div className="chat-floating-container">
                 <div className="chat-icon-wrapper">
-                  <img src={chatGif} alt="chat" className="chat-icon" />
+                  <img
+                    src={chatGif}
+                    alt="chat"
+                    className="chat-icon"
+                    onClick={toggleChatBot}
+                  />
                   {/* bubble always in DOM for smooth animation */}
                   <span
                     className={"chat-text" + (hideTxt ? " hide-chat-text" : "")}
@@ -97,6 +107,7 @@ export default function Home() {
               </div>
             )}
           </section>
+          {openChatBot && <Chatbot onClose={toggleChatBot} />}
         </>
       )}
     </div>

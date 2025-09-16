@@ -30,9 +30,9 @@
 
 .banner-home.mobile-view .primary-cta {
   color: white;
-  background: #103674;
+  background: linear-gradient(205deg, #103674, #9a4eff);
   border: none;
-  border-radius: 2px;
+  border-radius: 10px;
   width: 180px;
   height: 45px;
   font-size: 20px;
@@ -80,7 +80,7 @@
 
 .chat-text {
   position: relative;
-  background: linear-gradient(90deg, #e8308c, #103674);
+  background: linear-gradient(90deg, #9a4eff, #103674);
   color: #fff;
   padding: 8px 14px;
   border-radius: 20px;
