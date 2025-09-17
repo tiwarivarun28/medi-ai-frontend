@@ -1,8 +1,9 @@
 {
   "files": {
     "main.css": "/medi-ai-frontend/static/css/main.3ab31ccb.css",
-    "main.js": "/medi-ai-frontend/static/js/main.28844e60.js",
+    "main.js": "/medi-ai-frontend/static/js/main.c7a6a51d.js",
     "static/js/453.b122a024.chunk.js": "/medi-ai-frontend/static/js/453.b122a024.chunk.js",
+    "static/media/brandLogo.png": "/medi-ai-frontend/static/media/brandLogo.4a4616a41f15612e9723.png",
     "static/media/lifestyle.png": "/medi-ai-frontend/static/media/lifestyle.1daff48809ab7edb3443.png",
     "static/media/ai-report.png": "/medi-ai-frontend/static/media/ai-report.cfccafb7b4520ef8d52f.png",
     "static/media/chatGif.gif": "/medi-ai-frontend/static/media/chatGif.b7dc5559313d653f7898.gif",
@@ -16,11 +17,11 @@
     "static/media/slick.woff": "/medi-ai-frontend/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/medi-ai-frontend/index.html",
     "main.3ab31ccb.css.map": "/medi-ai-frontend/static/css/main.3ab31ccb.css.map",
-    "main.28844e60.js.map": "/medi-ai-frontend/static/js/main.28844e60.js.map",
+    "main.c7a6a51d.js.map": "/medi-ai-frontend/static/js/main.c7a6a51d.js.map",
     "453.b122a024.chunk.js.map": "/medi-ai-frontend/static/js/453.b122a024.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3ab31ccb.css",
-    "static/js/main.28844e60.js"
+    "static/js/main.c7a6a51d.js"
   ]
 }
