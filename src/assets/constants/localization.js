@@ -1,6 +1,11 @@
 const localization = {
   brandName: "Medi AI",
-  navbarOptions: ["HOME", "UPLOAD", "ABOUT", "CHAT-BOT"],
+  navbarOptions: [
+    ["HOME", "/"],
+    ["UPLOAD", "/upload"],
+    ["ABOUT", "/about"],
+    ["CHAT-BOT", "/chatbot"],
+  ],
   homeBanner: {
     header: "MEDI AI — Your secure health vault and personal AI doctor.",
     subHeader:

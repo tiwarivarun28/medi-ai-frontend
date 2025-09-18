@@ -1,0 +1,87 @@
+{
+  "patient": {
+    "name": "Ms. GEETA SINGH",
+    "age": "60 Years",
+    "gender": "Female",
+    "report_date": "3/17/2025"
+  },
+  "overall_finding": [
+    "Hemoglobin levels are low, indicating potential anemia.",
+    "Packed Cell Volume (PCV) is below normal range, suggesting less oxygen-carrying capacity.",
+    "RBC count is within low range, which may contribute to fatigue and weakness.",
+    "Platelet count is within normal limits, suggesting adequate clotting ability.",
+    "ESR is elevated, indicating possible inflammation or infection in the body."
+  ],
+  "test_summary": {
+    "Hemoglobin": [
+      "9.20",
+      "g/dL",
+      "12.00 - 15.00",
+      "Low",
+      [
+        "diet: Include iron-rich foods like spinach, lentils.",
+        "lifestyle: Engage in regular check-ups to monitor health."
+      ]
+    ],
+    "Packed Cell Volume (PCV)": [
+      "30.70",
+      "%",
+      "36.00 - 46.00",
+      "Low",
+      [
+        "diet: Include vitamin B12 and folate-rich foods.",
+        "lifestyle: Consider light exercise as tolerated."
+      ]
+    ],
+    "RBC Count": [
+      "3.62",
+      "mill/mm3",
+      "3.80 - 4.80",
+      "Low",
+      [
+        "diet: Increase dietary iron sources.",
+        "general: Stay hydrated to improve overall health."
+      ]
+    ],
+    "Platelet Count": [
+      "197",
+      "thou/mm3",
+      "150.00 - 410.00",
+      "Normal",
+      [
+        "diet: Maintain a balanced diet for optimal health.",
+        "lifestyle: Ensure adequate sleep for recovery."
+      ]
+    ],
+    "Mean Platelet Volume": [
+      "13.2",
+      "fL",
+      "6.5 - 12.0",
+      "High",
+      [
+        "diet: Focus on hydration and a healthy diet.",
+        "lifestyle: Regular physical activity can help."
+      ]
+    ],
+    "ESR": [
+      "31",
+      "mm/hr",
+      "0.00 - 30.00",
+      "High",
+      [
+        "diet: Omega-3 rich foods may help reduce inflammation.",
+        "lifestyle: Practice stress-reducing activities like yoga."
+      ]
+    ],
+    "Uric Acid": [
+      "4.70",
+      "mg/dL",
+      "2.4 - 5.7",
+      "Normal",
+      [
+        "diet: Stay hydrated to help kidney function.",
+        "lifestyle: Regular exercise can help maintain overall health."
+      ]
+    ]
+  }
+}

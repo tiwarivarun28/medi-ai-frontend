@@ -7,8 +7,8 @@ import AppRoutes from "./routes/AppRoutes";
 import LoadingPlane from "./components/layout/LoadingPlane";
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   window.RDL = {};
+  const [loading, setLoading] = useState(!window.RDL.sessionLoaded);
   const basename =
     process.env.NODE_ENV === "production" ? "/medi-ai-frontend" : "/";
   window.RDL.isMobile = window.innerWidth <= 768;
