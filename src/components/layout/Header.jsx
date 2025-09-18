@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
@@ -14,8 +15,13 @@ export default function Header() {
   };
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
   const toggleDrawer = (state) => {
     setOpen(state);
+  };
+  const handleNavClick = (path) => {
+    navigate(path);
+    setOpen(false);
   };
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -98,9 +104,13 @@ export default function Header() {
             className="custom-drawer-home-page"
           >
             <List>
-              {localization.navbarOptions.map((text) => (
-                <ListItem button key={text} onClick={() => toggleDrawer(false)}>
-                  <ListItemText primary={text} />
+              {localization.navbarOptions.map((navItem) => (
+                <ListItem
+                  button
+                  key={navItem[0]}
+                  onClick={() => handleNavClick(navItem[1])}
+                >
+                  <ListItemText primary={navItem[0]} />
                 </ListItem>
               ))}
             </List>

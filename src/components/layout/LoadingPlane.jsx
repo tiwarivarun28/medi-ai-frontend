@@ -4,6 +4,7 @@ import planeAnimation from "../../assets/features/paperplane.json"; // your lott
 
 export default function LoadingPlane({ onFinish }) {
   const [fadeOut, setFadeOut] = useState(false);
+  window.RDL.sessionLoaded = true;
 
   useEffect(() => {
     const timer = setTimeout(() => {

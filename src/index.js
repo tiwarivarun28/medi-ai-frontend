@@ -5,6 +5,8 @@ import "./styles/base.css";
 import "./styles/chatbot.css";
 import "./styles/layout.css";
 import "./styles/header.css";
+import "./styles/upload.css";
+import "./styles/medicalReport.css";
 import "./styles/home.css";
 import "./styles/loadingPlane.css";
 import "./styles/main.css";

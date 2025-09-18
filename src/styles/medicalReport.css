@@ -1,0 +1,352 @@
+/* ===== Root Wrapper ===== */
+.medical-report {
+  padding: 1rem;
+  background: #ffffff;
+  color: #103674;
+  font-family: "Roboto", sans-serif;
+}
+
+/* ===== Section Layout ===== */
+.section {
+  margin-bottom: 2rem;
+}
+
+.section-header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #103674;
+}
+
+/* ===== Grid Layout ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+/* ===== Card Styling ===== */
+.card {
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  padding: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.card:focus,
+.card:active {
+  outline: none;
+  box-shadow: none;
+  background: inherit;
+}
+
+/* ===== Patient Card ===== */
+.patient-card {
+  border-radius: 12px;
+  background: linear-gradient(
+    205deg,
+    rgba(16, 54, 116, 0.2),
+    rgba(154, 78, 255, 0.2)
+  );
+  padding: 1rem;
+}
+
+.patient-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background: #f2f2f2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.avatar-icon {
+  font-size: 2.4rem;
+  color: #9a4eff;
+}
+
+.patient-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #103674;
+}
+
+.patient-sub {
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+.patient-info-grid {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.patient-info-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f6f6f9;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  color: #103674;
+  font-weight: 500;
+}
+
+.patient-info-chip .chip-icon {
+  font-size: 1rem;
+  color: #9a4eff;
+}
+
+/* ===== Findings List ===== */
+.finding-list {
+  list-style-type: disc;
+  margin-top: 0.5rem;
+  color: #103674;
+}
+
+.finding-list li {
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+.toggle-btn {
+  background: transparent;
+  border: none;
+  color: #9a4eff;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.toggle-btn:focus,
+.toggle-btn:active {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===== Test Cards ===== */
+.test-card {
+  cursor: pointer;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+.test-card.low {
+  background: linear-gradient(
+    205deg,
+    rgba(255, 92, 92, 0.15),
+    /* red tone */ rgba(255, 255, 255, 0.25)
+  ) !important;
+  /* border: 1px solid #d32f2f; */
+}
+
+.test-card.normal {
+  background: linear-gradient(
+    205deg,
+    rgba(87, 255, 95, 0.15),
+    /* green tone */ rgba(255, 255, 255, 0.25)
+  ) !important;
+}
+
+.test-card.high {
+  background: linear-gradient(
+    205deg,
+    rgba(255, 152, 83, 0.15),
+    /* amber/orange tone */ rgba(255, 255, 255, 0.25)
+  ) !important;
+}
+
+.test-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(16, 54, 116, 0.15);
+  border-color: #c9c6eb;
+}
+
+.test-card:focus,
+.test-card:active {
+  outline: none;
+  box-shadow: none;
+  background: #ffffff; /* no blue flash */
+}
+
+.test-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.test-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #103674;
+}
+
+.test-card p {
+  font-size: 0.9rem;
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+/* ===== Buttons (global reset for clicks) ===== */
+.icon-btn,
+.filter-btn,
+.dialog-close-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+button:focus,
+button:active,
+.icon-btn:focus,
+.icon-btn:active,
+.filter-btn:focus,
+.filter-btn:active,
+.dialog-close-btn:focus,
+.dialog-close-btn:active {
+  outline: none;
+  box-shadow: none;
+  background: inherit;
+}
+
+.icon-btn {
+  color: #103674;
+}
+
+.filter-btn {
+  font-size: 0.9rem;
+  color: #9a4eff;
+  font-weight: 500;
+}
+
+.filter-icon {
+  margin-right: 5px;
+}
+
+.dialog-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #103674;
+}
+
+/* ===== Status Chips ===== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.chip-icon {
+  font-size: 1rem;
+  margin-right: 4px;
+}
+
+.chip.normal {
+  background: #e5f7eb;
+  color: #2e7d32;
+}
+
+.chip.low {
+  background: #fdecea;
+  color: #d32f2f;
+}
+
+.chip.high {
+  background: #fff4e5;
+  color: #ed6c02;
+}
+
+/* ===== Recommendations ===== */
+.recommendation-title {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #9a4eff;
+}
+
+/* ===== Filter Options ===== */
+.filter-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.filter-option input {
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+/* ===== Dialog Buttons ===== */
+.btn-clear {
+  background: transparent;
+  border: 1px solid #103674;
+  color: #103674;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.btn-apply {
+  background-color: #9a4eff;
+  border: none;
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.btn-clear:focus,
+.btn-clear:active,
+.btn-apply:focus,
+.btn-apply:active {
+  outline: none;
+  box-shadow: none;
+}
+.dialog-actions-filter {
+  display: flex !important; /* override MUI default */
+  justify-content: center !important;
+  gap: 4rem; /* space between Clear and Apply buttons */
+  padding: 1rem 0;
+  margin-bottom: 5px;
+}
