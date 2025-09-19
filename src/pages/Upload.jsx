@@ -25,7 +25,7 @@ const Upload = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8080/api/reports/upload",
+        "https://mediAi-backend-production.up.railway.app/api/reports/upload",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
