@@ -3,3 +3,13 @@
   margin-left: -20px;
   margin-right: -20px;
 }
+.bubble-animation-loader {
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  height: 50vh; /* take full viewport height */
+  width: 100%;
+  z-index: 9999;
+  opacity: 1;
+  transition: opacity 0.8s ease; /* smooth fade */
+}
