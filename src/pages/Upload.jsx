@@ -31,8 +31,20 @@ const Upload = () => {
       setReportData(res.data);
       setError("");
     } catch (err) {
+      let errorMsg = "Upload failed: ";
+
+      if (err.response) {
+        errorMsg += `Server responded with ${
+          err.response.status
+        }: ${JSON.stringify(err.response.data)}`;
+      } else if (err.request) {
+        errorMsg += "No response received from server.";
+      } else {
+        errorMsg += err.message;
+      }
+
       console.error("Upload error:", err);
-      setError("Error uploading file. Please try again.");
+      setError(errorMsg);
     }
   };
 
