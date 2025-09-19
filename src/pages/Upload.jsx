@@ -38,7 +38,8 @@ const Upload = () => {
           err.response.status
         }: ${JSON.stringify(err.response.data)}`;
       } else if (err.request) {
-        errorMsg += "No response received from server.";
+        errorMsg +=
+          "No response received from server. " + (err.message || "###");
       } else {
         errorMsg += err.message;
       }
