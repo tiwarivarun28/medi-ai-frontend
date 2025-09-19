@@ -28,8 +28,12 @@ const MedicalReport = ({ data }) => {
   }, [data]);
 
   const handleOpen = (testName, testData) => {
-    setSelectedTest({ testName, testData });
-    setOpen(true);
+    if (testData.recommendations) {
+      setSelectedTest({ testName, testData });
+      setOpen(true);
+    } else {
+      console.log("recomendation api not completed.!!!");
+    }
   };
 
   const handleClose = () => setOpen(false);

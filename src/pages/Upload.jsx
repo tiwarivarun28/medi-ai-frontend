@@ -22,11 +22,6 @@ const Upload = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("userId", "test-user-123");
-    console.log("File:", file);
-    console.log("Name:", file?.name);
-    console.log("Type:", file?.type);
-    console.log("Size:", file?.size);
-    console.log("formData:", formData);
 
     try {
       const res = await axios.post(
@@ -46,12 +41,10 @@ const Upload = () => {
           err.response.status
         }: ${JSON.stringify(err.response.data)}`;
       } else if (err.request) {
-        errorMsg +=
-          "No response received from server. " + (err.message || "###");
+        errorMsg += "No response received from server. " + err.message;
       } else {
         errorMsg += err.message;
       }
-
       console.error("Upload error:", err);
       setError(errorMsg);
     }
