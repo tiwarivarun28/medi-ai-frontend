@@ -29,7 +29,7 @@ const Upload = () => {
       }, 5000); // 5s delay per step
       return () => clearInterval(interval);
     }
-  }, [showLoader]);
+  }, [showLoader, uploadLoaderSteps.length]);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
