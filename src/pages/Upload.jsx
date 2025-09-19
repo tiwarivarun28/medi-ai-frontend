@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/layout/Header";
 import MedicalReport from "./MedicalReport";
 import Lottie from "lottie-react";
-import bubbleAnimation from "../assets/features/bubbleLoading.json"; // your lottie JSON
-
+import bubbleAnimation from "../assets/features/bubbleLoading.json";
+import localization from "../assets/constants/localization";
 const Upload = () => {
   const [file, setFile] = useState(null);
   const [reportData, setReportData] = useState(null);
   const [error, setError] = useState("");
   const [showLoader, setShowLoader] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const uploadLoaderSteps = localization.uploadLoaderSteps;
+
+  // Progressively show steps
+  useEffect(() => {
+    if (showLoader) {
+      setCurrentStep(0); // reset steps
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < uploadLoaderSteps.length - 1) {
+          i++;
+          setCurrentStep(i);
+        } else {
+          clearInterval(interval);
+        }
+      }, 5000); // 5s delay per step
+      return () => clearInterval(interval);
+    }
+  }, [showLoader]);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -72,8 +92,20 @@ const Upload = () => {
         </div>
       )}
       {showLoader && (
-        <div className={`bubble-animation-loader`}>
+        <div className="bubble-animation-loader">
           <Lottie animationData={bubbleAnimation} loop />
+          <div className="loader-text">
+            <ul>
+              {uploadLoaderSteps.map(
+                (step, index) =>
+                  index === currentStep && (
+                    <li key={index} className="step">
+                      {step}
+                    </li>
+                  )
+              )}
+            </ul>
+          </div>
         </div>
       )}
       {reportData && <MedicalReport data={reportData} />}

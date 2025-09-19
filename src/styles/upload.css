@@ -5,11 +5,49 @@
 }
 .bubble-animation-loader {
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center; /* vertical center */
-  height: 50vh; /* take full viewport height */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+}
+
+.loader-text {
+  margin-top: 0px;
+  position: relative;
+  height: 60px; /* fixed height for one line of text */
   width: 100%;
-  z-index: 9999;
-  opacity: 1;
-  transition: opacity 0.8s ease; /* smooth fade */
+  max-width: 500px;
+  overflow: hidden; /* prevent flicker */
+}
+
+.loader-text ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.loader-text li {
+  position: absolute; /* stack items on top of each other */
+  color: #103674;
+  font-size: 17px;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeSlideIn 0.6s ease forwards;
+}
+
+/* Smooth fade + slide */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -33,6 +33,14 @@ const localization = {
     },
   ],
   mediAiAssistTxt: "Hi! I'm Medi AI I can assist you",
+  uploadLoaderSteps: [
+    "Uploading and reading your file…",
+    "Extracting patient details…",
+    "Scanning and structuring medical report data…",
+    "Analyzing results with AI…",
+    "Generating your final report…",
+    "Almost done — preparing summary view…",
+  ],
 };
 
 export default localization;
