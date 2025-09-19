@@ -26,7 +26,10 @@ const Upload = () => {
     try {
       const res = await axios.post(
         "https://mediAi-backend-production.up.railway.app/api/reports/upload",
-        formData
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
       setReportData(res.data);
       setError("");
@@ -58,7 +61,7 @@ const Upload = () => {
           <h2>Upload Medical Report</h2>
           <input
             type="file"
-            accept=".pdf,image/*"
+            accept="application/pdf,image/*"
             onChange={handleFileChange}
           />
           <button onClick={handleUpload}>Upload</button>
