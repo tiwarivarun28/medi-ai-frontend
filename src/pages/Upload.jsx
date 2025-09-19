@@ -22,6 +22,11 @@ const Upload = () => {
     const formData = new FormData();
     formData.append("file", file);
     formData.append("userId", "test-user-123");
+    console.log("File:", file);
+    console.log("Name:", file?.name);
+    console.log("Type:", file?.type);
+    console.log("Size:", file?.size);
+    console.log("formData:", formData);
 
     try {
       const res = await axios.post(
