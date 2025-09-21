@@ -4,7 +4,7 @@ import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
 
-export default function Chatbot({ onClose }) {
+export default function Chatbot() {
   const [messages, setMessages] = useState([
     {
       from: "bot",

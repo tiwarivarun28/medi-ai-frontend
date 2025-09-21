@@ -50,10 +50,10 @@ export default function Home() {
   };
   const homeBanner = localization.homeBanner;
   const slides = localization.bannerSlide;
-  const toggleChatBot = () => {
-    setOpenChatBot(!openChatBot);
-  };
   const navigate = useNavigate();
+  const toggleChatBot = () => {
+    navigate("/chatbot");
+  };
 
   const goToUploadPage = () => {
     navigate("/upload"); // the path to navigate to
@@ -115,7 +115,7 @@ export default function Home() {
               </div>
             )}
           </section>
-          {openChatBot && <Chatbot onClose={toggleChatBot} />}
+          {/* {openChatBot && <Chatbot />} */}
         </>
       )}
     </div>
