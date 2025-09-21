@@ -11,10 +11,10 @@ import stressScore from "../assets/features/stressScore.png";
 import calander from "../assets/features/calander.png";
 import progress from "../assets/features/progress.png";
 import Slider from "react-slick";
-import Chatbot from "./ChatBot";
+// import Chatbot from "./ChatBot";
 export default function Home() {
   const [showIcon, setShowIcon] = useState(false);
-  const [openChatBot, setOpenChatBot] = useState(false);
+  // const [openChatBot, setOpenChatBot] = useState(false);
   const [hideTxt, setHideTxt] = useState(false);
   const stepsImg = [
     aireport,
