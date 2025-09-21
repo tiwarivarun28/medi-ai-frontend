@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardContent, TextField, IconButton } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import { useNavigate } from "react-router-dom";
 
 export default function Chatbot({ onClose }) {
   const [messages, setMessages] = useState([
@@ -35,13 +36,18 @@ export default function Chatbot({ onClose }) {
 
     setInput("");
   };
+  const navigate = useNavigate();
+
+  const goToHomePage = () => {
+    navigate("/"); // the path to navigate to
+  };
 
   return (
     <Card className="chatbot-window">
       {/* Header with close button */}
       <div className="chatbot-header">
         <span>Medi AI Assistant</span>
-        <IconButton size="small" onClick={onClose} color="inherit">
+        <IconButton size="small" onClick={goToHomePage} color="inherit">
           <CloseIcon />
         </IconButton>
       </div>

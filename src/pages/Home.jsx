@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // import FeatureBoxes from "../components/FeatureBoxes";
 import Header from "../components/layout/Header";
 import localization from "../assets/constants/localization";
@@ -52,6 +53,11 @@ export default function Home() {
   const toggleChatBot = () => {
     setOpenChatBot(!openChatBot);
   };
+  const navigate = useNavigate();
+
+  const goToUploadPage = () => {
+    navigate("/upload"); // the path to navigate to
+  };
   return (
     <div className="home-page-parent">
       <Header />
@@ -87,7 +93,9 @@ export default function Home() {
                 </div>
               ))}
             </Slider>
-            <button className="primary-cta">{homeBanner.primaryCta}</button>
+            <button className="primary-cta" onClick={goToUploadPage}>
+              {homeBanner.primaryCta}
+            </button>
             {showIcon && (
               <div className="chat-floating-container">
                 <div className="chat-icon-wrapper">
