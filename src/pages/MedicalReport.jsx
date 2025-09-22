@@ -14,8 +14,11 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import WcIcon from "@mui/icons-material/Wc";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Box from "@mui/material/Box";
+import Skeleton from "@mui/material/Skeleton";
 
 const MedicalReport = ({ data }) => {
+  console.log(data);
   const [open, setOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [selectedTest, setSelectedTest] = useState(null);
@@ -112,20 +115,31 @@ const MedicalReport = ({ data }) => {
       {/* Overall Findings */}
       <div className="section">
         <div className="section-title">Overall Findings</div>
-        <ul className="finding-list">
-          {data.overall_finding
-            .slice(0, showMoreFindings ? data.overall_finding.length : 3)
-            .map((finding, index) => (
-              <li key={index}>{finding}</li>
-            ))}
-        </ul>
-        {data.overall_finding.length > 3 && (
-          <button
-            className="toggle-btn"
-            onClick={() => setShowMoreFindings((prev) => !prev)}
-          >
-            {showMoreFindings ? "Show Less" : "Show More"}
-          </button>
+
+        {data.overall_finding ? (
+          <>
+            <ul className="finding-list">
+              {data.overall_finding
+                .slice(0, showMoreFindings ? data.overall_finding.length : 3)
+                .map((finding, index) => (
+                  <li key={index}>{finding}</li>
+                ))}
+            </ul>
+            {data.overall_finding.length > 3 && (
+              <button
+                className="toggle-btn"
+                onClick={() => setShowMoreFindings((prev) => !prev)}
+              >
+                {showMoreFindings ? "Show Less" : "Show More"}
+              </button>
+            )}
+          </>
+        ) : (
+          <Box className="section-simmer">
+            <Skeleton />
+            <Skeleton animation="wave" />
+            <Skeleton animation={false} />
+          </Box>
         )}
       </div>
 

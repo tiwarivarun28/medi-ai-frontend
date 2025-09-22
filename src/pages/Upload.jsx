@@ -1,37 +1,85 @@
 import React, { useState, useEffect } from "react";
-// import axios from "axios";
+import axios from "axios";
 import Header from "../components/layout/Header";
 import MedicalReport from "./MedicalReport";
 import Lottie from "lottie-react";
 import bubbleAnimation from "../assets/features/bubbleLoading.json";
+import SockJS from "sockjs-client";
+import { Client } from "@stomp/stompjs";
 import localization from "../assets/constants/localization";
-import dummyReport from "../assets/dummyReport.json";
-
-// Material UI imports
-import {
-  Box,
-  Typography,
-  Button,
-  Alert,
-  CircularProgress,
-  Stack,
-  Paper,
-} from "@mui/material";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import InsertDriveFileIcon from "@mui/icons-material/InsertDriveFile";
 
 const Upload = () => {
   const [file, setFile] = useState(null);
   const [reportData, setReportData] = useState(null);
   const [error, setError] = useState("");
-  const [showLoader, setShowLoader] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [stompClient, setStompClient] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
-
   const uploadLoaderSteps = localization.uploadLoaderSteps;
 
-  // Progressively show steps
+  // simple helper to create a userId (try crypto.randomUUID first)
+  const createUserId = () => {
+    try {
+      if (window?.crypto?.randomUUID) return window.crypto.randomUUID();
+    } catch (e) {}
+    return `uid-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
+  };
+
+  // connect and subscribe, returns the client instance
+  const connectAndSubscribe = (userId, onMessage) => {
+    return new Promise((resolve, reject) => {
+      const client = new Client({
+        reconnectDelay: 5000,
+        webSocketFactory: () =>
+          new SockJS("https://mediAi-backend-production.up.railway.app/ws"),
+      });
+
+      client.onConnect = () => {
+        client.subscribe(`/medicalReportTopic/${userId}`, (msg) => {
+          onMessage(msg.body);
+        });
+        setStompClient(client);
+        resolve(client);
+      };
+
+      client.onStompError = (frame) => {
+        reject(new Error(frame?.body || "STOMP error"));
+      };
+
+      client.activate();
+    });
+  };
+
+  // parse incoming message (strip markdown fences if any)
+  const parseMessage = (text) => {
+    if (!text) return null;
+    try {
+      return JSON.parse(text);
+    } catch {
+      try {
+        const cleaned = text
+          .replace(/```json/g, "")
+          .replace(/```/g, "")
+          .trim();
+        return JSON.parse(cleaned);
+      } catch {
+        return { _raw: text };
+      }
+    }
+  };
+
   useEffect(() => {
-    if (showLoader) {
+    // cleanup on unmount: disconnect stomp client if present
+    return () => {
+      if (stompClient) {
+        try {
+          stompClient.deactivate();
+        } catch (e) {}
+      }
+    };
+  }, [stompClient]);
+  useEffect(() => {
+    if (loading) {
       setCurrentStep(0); // reset steps
       let i = 0;
       const interval = setInterval(() => {
@@ -44,11 +92,10 @@ const Upload = () => {
       }, 5000); // 5s delay per step
       return () => clearInterval(interval);
     }
-  }, [showLoader, uploadLoaderSteps.length]);
-
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-    setError(""); // reset error when new file selected
+  }, [loading, uploadLoaderSteps.length]);
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setError("");
   };
 
   const handleUpload = async () => {
@@ -56,123 +103,104 @@ const Upload = () => {
       setError("Please select a file first!");
       return;
     }
-    setShowLoader(true);
-    setTimeout(() => {
-      setReportData(dummyReport);
-      setShowLoader(false);
-      setError("");
-    }, 2600);
-    // const formData = new FormData();
-    // formData.append("file", file);
-    // formData.append("userId", "test-user-123");
 
-    // try {
-    //   const res = await axios.post(
-    //     "https://mediAi-backend-production.up.railway.app/api/reports/upload",
-    //     formData,
-    //     {
-    //       headers: { "Content-Type": "multipart/form-data" },
-    //     }
-    //   );
-    //   setReportData(res.data);
-    //   setShowLoader(false);
-    //   setError("");
-    // } catch (err) {
-    //   let errorMsg = "Upload failed: ";
+    setError("");
+    setLoading(true);
+    setReportData(null);
 
-    //   if (err.response) {
-    //     errorMsg += `Server responded with ${
-    //       err.response.status
-    //     }: ${JSON.stringify(err.response.data)}`;
-    //   } else if (err.request) {
-    //     errorMsg += "No response received from server. " + err.message;
-    //   } else {
-    //     errorMsg += err.message;
-    //   }
-    //   setError(errorMsg);
-    //   setShowLoader(false);
-    // }
+    const userId = createUserId();
+
+    // message handler
+    const onMessage = (body) => {
+      const payload = parseMessage(body);
+      if (!payload) return;
+
+      if (payload.error) {
+        setError(payload.message || payload.error);
+        setLoading(false);
+        return;
+      }
+
+      // partial = has test_summary, final = has overall_finding
+      if (payload.overall_finding || payload.overallFinding) {
+        setReportData(payload);
+        setLoading(false);
+      } else {
+        setReportData(payload); // show partial
+        setLoading(false);
+      }
+    };
+
+    try {
+      // 1) subscribe before upload
+      await connectAndSubscribe(userId, onMessage);
+
+      // 2) upload file (server will send partial + final to the topic)
+      const fd = new FormData();
+      fd.append("file", file);
+      fd.append("userId", userId);
+
+      await axios.post(
+        "https://mediAi-backend-production.up.railway.app/api/reports/upload",
+        fd,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+          timeout: 120000,
+        }
+      );
+
+      // note: we don't wait for server processing here; results come via WS
+    } catch (err) {
+      console.error("Upload/subscribe error", err);
+      setError(err?.message || "Upload failed");
+      setLoading(false);
+      if (stompClient) {
+        try {
+          stompClient.deactivate();
+        } catch (e) {}
+        setStompClient(null);
+      }
+    }
   };
 
   return (
-    <Box
-      className="upload-page-parent"
-      sx={{ minHeight: "100vh", bgcolor: "#f6fafc" }}
-    >
+    <div className="upload-page-parent">
       <Header />
-      <Box maxWidth="sm" mx="auto" sx={{ py: 5 }}>
-        {/* Show upload panel if no data and not loading */}
-        {!reportData && !showLoader && (
-          <Paper elevation={3} sx={{ p: 4, borderRadius: 3 }}>
-            <Typography variant="h4" align="center" mb={2}>
-              Upload Medical Report
-            </Typography>
 
-            <Stack direction="column" alignItems="center" spacing={2}>
-              <Button
-                variant="contained"
-                component="label"
-                startIcon={<CloudUploadIcon />}
-                sx={{ fontWeight: 600, px: 4, py: 1.5, fontSize: 18 }}
-              >
-                Select File
-                <input
-                  type="file"
-                  hidden
-                  accept="application/pdf,image/*"
-                  onChange={handleFileChange}
-                />
-              </Button>
-              {/* Show file information */}
-              {file && (
-                <Stack direction="row" alignItems="center" spacing={1}>
-                  <InsertDriveFileIcon color="info" />
-                  <Typography variant="body1">{file.name}</Typography>
-                </Stack>
+      {!reportData && !loading && (
+        <div>
+          <h2>Upload Medical Report</h2>
+          <input
+            type="file"
+            accept="application/pdf,image/*"
+            onChange={handleFileChange}
+          />
+          <button onClick={handleUpload}>Upload</button>
+          {error && <p className="error-msg">{error}</p>}
+        </div>
+      )}
+
+      {loading && (
+        <div className="bubble-animation-loader">
+          <Lottie animationData={bubbleAnimation} loop />
+          <div className="loader-text">
+            <ul>
+              {uploadLoaderSteps.map(
+                (step, index) =>
+                  index === currentStep && (
+                    <li key={index} className="step">
+                      {step}
+                    </li>
+                  )
               )}
-              <Button
-                variant="outlined"
-                color="primary"
-                onClick={handleUpload}
-                disabled={!file}
-                sx={{ width: "50%", mt: 1, fontWeight: 600 }}
-              >
-                Upload
-              </Button>
-              {/* Show error message */}
-              {error && (
-                <Alert severity="error" sx={{ width: "100%", mt: 1 }}>
-                  {error}
-                </Alert>
-              )}
-            </Stack>
-          </Paper>
-        )}
+            </ul>
+          </div>
+          {error && <p className="error-msg">{error}</p>}
+        </div>
+      )}
 
-        {/* Show loader animation and steps */}
-        {showLoader && (
-          <Box
-            className="bubble-animation-loader"
-            sx={{ textAlign: "center", py: 4 }}
-          >
-            <Lottie
-              animationData={bubbleAnimation}
-              loop
-              style={{ width: 220, margin: "0 auto" }}
-            />
-            <CircularProgress color="primary" sx={{ mt: 3, mb: 2 }} />
-            <Box className="loader-text" mt={2}>
-              <Typography variant="h6" color="primary">
-                {uploadLoaderSteps[currentStep]}
-              </Typography>
-            </Box>
-          </Box>
-        )}
-
-        {/* Show medical report result */}
-        {reportData && <MedicalReport data={reportData} />}
-      </Box>
-    </Box>
+      {reportData && <MedicalReport data={reportData} />}
+    </div>
   );
 };
 
