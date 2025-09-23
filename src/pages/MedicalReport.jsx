@@ -136,9 +136,11 @@ const MedicalReport = ({ data }) => {
           </>
         ) : (
           <Box className="section-simmer">
-            <Skeleton />
-            <Skeleton animation="wave" />
-            <Skeleton animation={false} />
+            <Skeleton className="shimmer" />
+            <Skeleton className="pulse" />
+            <Skeleton className="tilt-shimmer" />
+            <Skeleton className="shimmer" />
+            <Skeleton className="pulse" />
           </Box>
         )}
       </div>
