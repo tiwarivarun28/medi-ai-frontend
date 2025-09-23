@@ -36,6 +36,7 @@ const Upload = () => {
 
       client.onConnect = () => {
         client.subscribe(`/medicalReportTopic/${userId}`, (msg) => {
+          console.log("result via medicalReportTopic websocket", msg.body);
           onMessage(msg.body);
         });
         setStompClient(client);
