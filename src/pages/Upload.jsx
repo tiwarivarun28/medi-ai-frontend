@@ -51,24 +51,6 @@ const Upload = () => {
     });
   };
 
-  // parse incoming message (strip markdown fences if any)
-  const parseMessage = (text) => {
-    if (!text) return null;
-    try {
-      return JSON.parse(text);
-    } catch {
-      try {
-        const cleaned = text
-          .replace(/```json/g, "")
-          .replace(/```/g, "")
-          .trim();
-        return JSON.parse(cleaned);
-      } catch {
-        return { _raw: text };
-      }
-    }
-  };
-
   useEffect(() => {
     // cleanup on unmount: disconnect stomp client if present
     return () => {
@@ -113,7 +95,7 @@ const Upload = () => {
 
     // message handler
     const onMessage = (body) => {
-      const payload = parseMessage(body);
+      const payload = JSON.parse(body);
       if (!payload) return;
 
       if (payload.error) {
