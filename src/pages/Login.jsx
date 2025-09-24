@@ -8,7 +8,6 @@ import {
   Alert,
   InputAdornment,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import Header from "../components/layout/Header";
 
 function Login() {
@@ -19,8 +18,6 @@ function Login() {
   const [show, setShow] = useState(true);
 
   const handleClick = () => setShow(!show);
-
-  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
