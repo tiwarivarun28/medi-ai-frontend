@@ -5,6 +5,7 @@ const localization = {
     ["UPLOAD", "/upload"],
     ["ABOUT", "/about"],
     ["CHAT-BOT", "/chatbot"],
+    ["LOGIN / SIGNUP", "/login"],
   ],
   homeBanner: {
     header: "MEDI AI — Your secure health vault and personal AI doctor.",
