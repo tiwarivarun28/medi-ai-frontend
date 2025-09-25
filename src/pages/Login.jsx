@@ -119,8 +119,7 @@ function Login() {
               variant="outlined"
               sx={{
                 mt: 1,
-                px: 15,
-                py: 1,
+                px: 8,
                 border: "2px solid #103674",
               }}
             >
@@ -129,7 +128,7 @@ function Login() {
 
             <Typography
               variant="h6"
-              sx={{ color: "#103674", marginTop: "1rem" }}
+              sx={{ color: "#103674", mt: 2 }}
               gutterBottom
             >
               Don't have account?
@@ -139,8 +138,7 @@ function Login() {
               variant="outlined"
               sx={{
                 mt: 1,
-                px: 15,
-                py: 1,
+                px: 8,
                 border: "2px solid #103674",
               }}
             >
