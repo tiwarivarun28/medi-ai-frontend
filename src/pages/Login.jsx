@@ -9,6 +9,7 @@ import {
   InputAdornment,
 } from "@mui/material";
 import Header from "../components/layout/Header";
+import { Signup } from "./Signup";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -16,6 +17,10 @@ function Login() {
   const [error, setError] = useState("");
   //   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(true);
+  const [signupOpen, setSignupOpen] = useState(false);
+
+  const handleSignupOpen = () => setSignupOpen(true);
+  const handleSignupClose = () => setSignupOpen(false);
 
   const handleClick = () => setShow(!show);
 
@@ -141,9 +146,11 @@ function Login() {
                 px: 8,
                 border: "2px solid #103674",
               }}
+              onClick={handleSignupOpen}
             >
               SignUp
             </Button>
+            <Signup open={signupOpen} onClose={handleSignupClose} />
           </Box>
         </Box>
       </Container>
